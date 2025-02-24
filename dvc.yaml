@@ -1,0 +1,43 @@
+stages:
+  01_data_ingestion:
+    cmd : python src/01_data_ingestion.py
+    deps : 
+    - src/01_data_ingestion.py
+    outs : 
+    - data/raw
+  
+  02_data_preprocessing : 
+    cmd : python src/02_data_preprocessing.py
+    deps :
+    - data/raw
+    - src/02_data_preprocessing.py
+    outs : 
+    - data/interim
+
+  03_feature_engineering : 
+    cmd : python src/03_feature_engineering.py 
+    deps:
+    - data/interim
+    - src/03_feature_engineering.py
+    outs : 
+    - data/final
+  
+  04_model_training : 
+    cmd : python src/04_model_training.py
+    deps:
+    - data/final
+    - src/04_model_training.py
+    params : 
+    - 04_model_training.n_estimators
+    - 04_model_training.random_state
+    outs:
+    - models/model.pkl
+
+  05_model_evaluation:
+    cmd : python src/05_model_evaluation.py
+    deps:
+    - models/model.pkl
+    - src/05_model_evaluation.py
+    outs:
+    - reports/metrics.json
+
