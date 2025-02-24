@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 #Logging
 
 #Ensuring Logs directory exists
-log_dir = 'logs'
+log_dir = 'log'
 os.makedirs(log_dir, exist_ok=True)
 
 #Logging Configuration
@@ -81,7 +81,7 @@ def save_data(train_data : pd.DataFrame, test_data : pd.DataFrame, data_path : s
 def main():
     try : 
         test_size = 0.2
-        data_path = "https://raw.githubusercontent.com/saad1912/MLOPS_ML_Pipeline_DVC/refs/heads/main/experiments/spam.csv?token=GHSAT0AAAAAAC6ZZ4BHRAWLDSNFWXT3BW54Z53IFGA"
+        data_path = "https://raw.githubusercontent.com/saad1912/MLOPS_ML_Pipeline_DVC/refs/heads/main/experiments/spam.csv?token=GHSAT0AAAAAAC6ZZ4BG64ZZCXICQVGTRBGSZ54F3RA"
         df = load_data(data_url=data_path)
         final_df = preprocess_data(df)
         train_data, test_data = train_test_split(final_df, test_size=test_size, random_state=2)
