@@ -3,6 +3,9 @@ stages:
     cmd : python src/01_data_ingestion.py
     deps : 
     - src/01_data_ingestion.py
+    params : 
+    - 01_data_ingestion.test_size
+    - 01_data_ingestion.random_state
     outs : 
     - data/raw
   
@@ -19,6 +22,8 @@ stages:
     deps:
     - data/interim
     - src/03_feature_engineering.py
+    params : 
+    - 03_feature_engineering.max_features
     outs : 
     - data/final
   
