@@ -6,6 +6,7 @@ import yaml
 import numpy as np
 import json
 from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_auc_score
+from dvclive import Live
 
 # Ensure the "logs" directory exists
 log_dir = 'log'
@@ -135,6 +136,17 @@ def main():
         
         
         metrics = evaluate_model(X_test,y_test,clf)
+        
+        with Live(save_dvc_exp=True) as live:
+            live.log_metric('accuracy', metrics['accuracy'])
+            live.log_metric('precision', metrics['precision'])
+            live.log_metric('recall', metrics['recall'])
+            live.log_metric('auc', metrics['auc'])
+            live.log_params(params)
+        
+            
+            
+        
         save_metrics(metrics, 'reports/metrics.json')
     except Exception as e:
         logger.error('Failed to complete the model evaluation process: %s', e)
