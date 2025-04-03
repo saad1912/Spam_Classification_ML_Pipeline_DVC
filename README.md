@@ -3,4 +3,4 @@ Creating End to End ML Pipeline, Experiment Tracking and Data Versioning through
 
 
 
-![Project Diagram](proj_diagram.png)
+![Project Diagram](proj_diagram_1.png)
